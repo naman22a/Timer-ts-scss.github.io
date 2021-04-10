@@ -5,7 +5,7 @@ const secs = document.getElementById('secs') as HTMLSpanElement;
 const cents = document.getElementById('cents') as HTMLSpanElement;
 
 let currentTimer = 0;
-let interval = 0;
+let interval: any = 0;
 let lastUpdateTime = new Date().getTime();
 
 const pad = (n: number) => ("00" + n).substr(-2);
@@ -36,7 +36,7 @@ const stopTimer = () => {
   interval = 0;
 }
 
-const restartTimer = () => {
+const resetTimer = () => {
   stopTimer();
 
   currentTimer = 0;
@@ -46,11 +46,11 @@ const restartTimer = () => {
 
 const startBtn = document.getElementById('start') as HTMLButtonElement;
 const stopBtn = document.getElementById('stop') as HTMLButtonElement;
-const restartBtn = document.getElementById('restart') as HTMLButtonElement;
+const resetBtn = document.getElementById('reset') as HTMLButtonElement;
 
 startBtn.addEventListener('click', startTimer);
 stopBtn.addEventListener('click', stopTimer);
-restartBtn.addEventListener('click', restartTimer);
+resetBtn.addEventListener('click', resetTimer);
 
 // keyboard functionality
 
@@ -62,7 +62,7 @@ document.addEventListener('keypress', () => {
   if (noOfClicks % 2 == 0) {
     stopTimer();
   } else {
-    restartTimer();
+    resetTimer();
     startTimer();
   }
 });
